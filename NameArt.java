@@ -5,7 +5,7 @@
  * Programming 1, Name in Code
  */
 
-public class PrintName{
+public class NameArt{
   public static void main(String[] argv){
 
     System.out.println("John Naylor");
