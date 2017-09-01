@@ -9,7 +9,7 @@ public class NameArt{
   public static void main(String[] argv){
 
     System.out.println("John Naylor");
-    System.out.println("CMSC 255, Session 2");
+    System.out.println("CMSC 255 fall 2017");
     System.out.println("PrintName");
     System.out.println("Programming Project 1: Name in Code");
     System.out.println("\n\n\n");
