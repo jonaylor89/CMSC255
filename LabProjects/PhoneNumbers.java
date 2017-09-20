@@ -1,4 +1,13 @@
 
+/*********************************************\
+*
+*  John Naylor and Baochau Tran
+*  CMSCC 255 session 2
+*  Lab 4
+*  Convert letter to number
+*
+\*********************************************/
+
 import java.util.Scanner;
 
 public class PhoneNumbers{
