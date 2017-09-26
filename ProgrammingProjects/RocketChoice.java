@@ -102,7 +102,7 @@ public class RocketChoice{
       }
 
       // Allows the user to get out of the program
-      System.out.println("\n\n\n[+] Press \'q\' to exit");
+      System.out.println("\n\n\n[+] Press \'q\' to exit or anything else to try another combination");
       killSwitch = userInput.next().charAt(0);
 
       if(killSwitch == 'q'){
