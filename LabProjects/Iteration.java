@@ -48,10 +48,10 @@ public class Iteration{
 
       }
 
-        System.out.println("[*] To play again with a new number enter \'a\'");
+        System.out.println("[*] To play again with a new number enter \'y\'/\'n\'");
         char playAgain = userInput.next().charAt(0);
 
-        if(playAgain != 'a'){
+        if(playAgain != 'y'){
           break;
         }
 
