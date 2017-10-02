@@ -80,7 +80,7 @@ public class RocketChoice{
         double ConeSurfArea = surfAreaOfCone(RadiusCylinder, HeightCone);
         double FinSurfArea = areaOfParallel(BaseFin, HeightFin);
         double TotalSurfArea = CylinderSurfArea + ConeSurfArea + FinSurfArea;
-        double CostToBuild = TotalSurfArea * 1.75;
+        double CostToBuild = TotalSurfArea * PriceOfMaterial;
         double AmountOfFuel = volumeOfCylinder(RadiusCylinder, HeightCylinder);
         double CostOfFuel = AmountOfFuel * PriceFuel;
 
@@ -92,9 +92,11 @@ public class RocketChoice{
         System.out.printf("\t Fin Surface Area: %.2f x 3 = %.2f(cm^2)\n", FinSurfArea, FinSurfArea * 3);
         System.out.printf("\t Total Surface Area: %.2f(cm^2)\n", TotalSurfArea);
 
-        System.out.printf("Cost of the Material: $%.2f\n", CostToBuild);
-        System.out.printf("The Rocket Uses: %.2f(L)\n", AmountOfFuel);
-        System.out.printf("The Total Cost of Fuel: $%.2f\n", CostOfFuel);
+        System.out.printf("Cost of the Material using %s at $%.2f per cm^2: $%.2f\n", typeOfMaterial, PriceOfMaterial, CostToBuild);
+        System.out.printf("The Rocket Uses: %.2f(mL)\n", AmountOfFuel);
+        System.out.printf("The Total Cost of Fuel using %s at %.2f per mL: $%.2f\n", typeOfFuel, PriceFuel, CostOfFuel);
+        System.out.printf("The cost to build the rocket is %.2f\n", BUILD);
+        System.out.printf("The grand cost of the rocket is: %.2f\n", CostToBuild + CostOfFuel);
 
         // If the user puts in an incompatable data type, the program tells the user and quits.
       }catch(InputMismatchException e){
