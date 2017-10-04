@@ -1,5 +1,5 @@
 
-public class VariableDefinitions{
+public class Lab3{
 
   public static void main(String[] argv){
 

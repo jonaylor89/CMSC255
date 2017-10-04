@@ -11,7 +11,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class Iteration{
+public class Lab5{
 
   public static void main(String[] argv){
 

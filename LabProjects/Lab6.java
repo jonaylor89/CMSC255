@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class SoccorScores{
+public class Lab6{
 
 
   public static void main(String[] argv) throws FileNotFoundException{
