@@ -30,8 +30,8 @@ public class RocketData{
     while(fileReader.hasNext()){
 
       name = fileReader.next();
-      thrust = fileReader.nextDouble();
       mass = fileReader.nextDouble();
+      thrust = fileReader.nextDouble();
 
       ratio = thrustToWeight(thrust, mass);
 
@@ -43,7 +43,7 @@ public class RocketData{
         typeOfRocket = "Jet or Rocket Engine";
       }
 
-      System.out.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
+     System.out.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
 
     }
   }
