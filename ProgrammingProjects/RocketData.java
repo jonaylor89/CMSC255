@@ -21,10 +21,31 @@ public class RocketData{
 
     Scanner fileReader = new Scanner(rocketData);
 
-    while(fileReader.hasNext()){
-      System.out.println(fileReader.next());
-    }
+    String name;
+    double thrust;
+    double mass;
+    double ratio;
+    String typeOfRocket;
 
+    while(fileReader.hasNext()){
+
+      name = fileReader.next();
+      thrust = fileReader.nextDouble();
+      mass = fileReader.nextDouble();
+
+      ratio = thrustToWeight(thrust, mass);
+
+      if(ratio > 20.0){
+        typeOfRocket = "Rocket Engine";
+      }else if(ratio < 20.0){
+        typeOfRocket = "Jet Engine";
+      }else{
+        typeOfRocket = "Jet or Rocket Engine";
+      }
+
+      System.out.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
+
+    }
   }
 
   public static double thrustToWeight(double thrust, double mass){
