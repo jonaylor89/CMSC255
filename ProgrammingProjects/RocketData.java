@@ -20,6 +20,11 @@ public class RocketData{
 
   public static void main(String[] argv) throws FileNotFoundException{
 
+    System.out.println("John Naylor");
+    System.out.println("CMSC255 Section 2");
+    System.out.println("RocketData");
+    System.out.println("Project4");
+
     /*********************************************************************************
     *
     * Grab the filename from the command line and convert it into a File object
