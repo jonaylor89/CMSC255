@@ -75,6 +75,7 @@ public class RocketData{
 
     }
 
+    // Always close the file
     fileReader.close();
 
   }
