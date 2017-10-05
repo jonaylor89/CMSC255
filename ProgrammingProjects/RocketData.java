@@ -5,6 +5,8 @@
 * Project4 RocketData
 * Input rocket data from txt file and output the thrust-to-weight ratio
 *
+* User most add an input file in the command arguements
+*
 ***********************************************************/
 
 import java.util.Scanner;
