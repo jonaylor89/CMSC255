@@ -74,6 +74,9 @@ public class RocketData{
      System.out.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
 
     }
+
+    fileReader.close();
+
   }
 
   /*************************************************************************************
