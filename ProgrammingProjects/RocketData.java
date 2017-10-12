@@ -12,6 +12,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class RocketData{
 
@@ -20,10 +21,7 @@ public class RocketData{
 
   public static void main(String[] argv) throws FileNotFoundException{
 
-    System.out.println("John Naylor");
-    System.out.println("CMSC255 Section 2");
-    System.out.println("RocketData");
-    System.out.println("Project4");
+    printHeader();
 
     /*********************************************************************************
     *
@@ -31,9 +29,21 @@ public class RocketData{
     * The File object will be scanned in with the Scanner object
     *
     *******************************************************************************/
-    File rocketData = new File(argv[0]);
+
+    File rocketData;
+
+    try{
+      rocketData = new File(argv[0]);
+    }catch(IndexOutOfBoundsException e){
+      rocketData = null;
+      System.out.println(e);
+      System.out.println("Must enter the input file as a command line arguement");
+    }
+
+    File outputFile = new File("RocketResults.txt");
 
     Scanner fileReader = new Scanner(rocketData);
+    PrintWriter output = new PrintWriter(outputFile);
 
     //Declaring needed variables
     String name;
@@ -41,6 +51,7 @@ public class RocketData{
     double mass;
     double ratio;
     String typeOfRocket;
+
     /*********************************************************************************
     *
     * Loop throught the scanned file until the file runs out of words
@@ -76,11 +87,12 @@ public class RocketData{
       }
 
       // Output appropriate values in the specific format
-     System.out.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
+     output.printf("%s %.4f %s\n", name, ratio, typeOfRocket);
 
     }
 
     // Always close the file
+    output.close();
     fileReader.close();
 
   }
@@ -92,5 +104,12 @@ public class RocketData{
   ************************************************************************************/
   public static double thrustToWeight(double thrust, double mass){
     return thrust / (mass * GRAVITY);
+  }
+
+  public static void printHeader(){
+    System.out.println("John Naylor");
+    System.out.println("CMSC255 Section 2");
+    System.out.println("RocketData");
+    System.out.println("Project4");
   }
 }
