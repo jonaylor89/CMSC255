@@ -36,8 +36,8 @@ public class RocketData{
       rocketData = new File(argv[0]);
     }catch(IndexOutOfBoundsException e){
       rocketData = null;
-      System.out.println(e);
       System.out.println("Must enter the input file as a command line arguement");
+      System.exit(1);
     }
 
     File outputFile = new File("RocketResults.txt");
