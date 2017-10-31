@@ -21,6 +21,9 @@ import java.io.PrintWriter;
 
 public class DataAnalysis{
 
+  //Scanner for prompting user
+  private static Scanner userInput = new Scanner(System.in);
+
 /**********************************************************
 *
 * The main method inputs a txt file from the terminal
@@ -38,15 +41,14 @@ public class DataAnalysis{
 /**************************************************************************
 *
 * Try/Catch to retrieve the command line argument with the input data file
-* If no file is given the program prints a message and exits
+* If no file is given the program prompts the user
 *
 ***************************************************************************/
     try{
       weatherData = new File(argv[0]);
     }catch(IndexOutOfBoundsException e){
-      weatherData = null;
-      System.out.println("Must enter the input file as a command line arguement");
-      System.exit(1);
+      System.out.print("Enter file:");
+      weatherData = new File(userInput.next());
     }
 
     //dataOutput.txt is the name of the output file in the rubric
@@ -55,65 +57,81 @@ public class DataAnalysis{
     Scanner fileReader = new Scanner(weatherData);
     PrintWriter output = new PrintWriter(outputFile);
 
-/**********************************************************************************
-* Initialized the arrays that will store all of the different values
-* Also declare all the variables that will be used for the statistical calculations
-***********************************************************************************/
-    int[] days = {};
-    int[] highs = {};
-    int[] lows = {};
-    double[] rain = {};
+    while(true){
 
-    int avgHigh;
-    int avgLow;
-    double totalRain;
+  /**********************************************************************************
+  * Initialized the arrays that will store all of the different values
+  * Also declare all the variables that will be used for the statistical calculations
+  ***********************************************************************************/
+      int[] days = {};
+      int[] highs = {};
+      int[] lows = {};
+      double[] rain = {};
 
-    //The first three values will be the column header which will be parsed first
-    int year = fileReader.nextInt();
-    String month = fileReader.next();
-    String city = fileReader.next();
+      int avgHigh;
+      int avgLow;
+      double totalRain;
 
-    // while loop as long as there is another line in the file and the line has an integer (In case the line is empty)
-    while(fileReader.hasNextLine() && fileReader.hasNextInt()){
+      //The first three values will be the column header which will be parsed first
+      int year = fileReader.nextInt();
+      String month = fileReader.next();
+      String city = fileReader.next();
 
-      /************************************************************************
-      * If the file has another line the arrays will need to be lengthened by 1
-      * This is done by making a new array with a length of +1 of the old one
-      * and copying the data fro the old array onto the new one
-      *************************************************************************/
-      days = Arrays.copyOf(days, days.length+1);
-      highs = Arrays.copyOf(highs, highs.length+1);
-      lows = Arrays.copyOf(lows, lows.length+1);
-      rain = Arrays.copyOf(rain, rain.length+1);
+      // while loop as long as there is another line in the file and the line has an integer (In case the line is empty)
+      while(fileReader.hasNextLine() && fileReader.hasNextInt()){
 
-      // The actual parsing takes place with the file scanner adding the value from the line in the file to the arrays
-      days[days.length-1] = fileReader.nextInt();
-      highs[highs.length-1] = fileReader.nextInt();
-      lows[lows.length-1] = fileReader.nextInt();
-      rain[rain.length-1] = fileReader.nextDouble();
+        /************************************************************************
+        * If the file has another line the arrays will need to be lengthened by 1
+        * This is done by making a new array with a length of +1 of the old one
+        * and copying the data fro the old array onto the new one
+        *************************************************************************/
+        days = Arrays.copyOf(days, days.length+1);
+        highs = Arrays.copyOf(highs, highs.length+1);
+        lows = Arrays.copyOf(lows, lows.length+1);
+        rain = Arrays.copyOf(rain, rain.length+1);
 
+        // The actual parsing takes place with the file scanner adding the value from the line in the file to the arrays
+        days[days.length-1] = fileReader.nextInt();
+        highs[highs.length-1] = fileReader.nextInt();
+        lows[lows.length-1] = fileReader.nextInt();
+        rain[rain.length-1] = fileReader.nextDouble();
+
+      }
+
+      // Necessary statistical calculations from the output file
+      avgHigh = calculateAverage(highs);
+      avgLow = calculateAverage(lows);
+      totalRain = calculateSum(rain);
+
+      // Print the result of the statistical tests into the output file
+      output.printf("For the month of %s %d in %s\n", month, year, city);
+      output.printf("The average high temperature was %d degrees\n", avgHigh);
+      output.printf("The average low temperature was %d degrees\n", avgLow);
+      output.printf("The total rainfall was %.2f inches\n", totalRain);
+
+      // Print the edited data to the output file
+      for(int i = 0; i < highs.length; i++){
+        output.printf("%d %s %s %s\n", days[i], stringify(highs[i], avgHigh), stringify(lows[i], avgLow), stringify(rain[i]));
+      }
+
+      fileReader.close();
+
+      System.out.print("Would you like to enter a file? (y/n)");
+
+      char response = userInput.next().charAt(0);
+
+      if(response == 'y'){
+
+        System.out.print("Enter file:");
+        File newFile = new File(userInput.next());
+
+        fileReader = new Scanner(newFile);
+      }else{
+        break;
+      }
     }
-
-    // Necessary statistical calculations from the output file
-    avgHigh = calculateAverage(highs);
-    avgLow = calculateAverage(lows);
-    totalRain = calculateSum(rain);
-
-    // Print the result of the statistical tests into the output file
-    output.printf("For the month of %s %d in %s\n", month, year, city);
-    output.printf("The average high temperature was %d degrees\n", avgHigh);
-    output.printf("The average low temperature was %d degrees\n", avgLow);
-    output.printf("The total rainfall was %.2f inches\n", totalRain);
-
-    // Print the edited data to the output file
-    for(int i = 0; i < highs.length; i++){
-      output.printf("%d %s %s %s\n", days[i], stringify(highs[i], avgHigh), stringify(lows[i], avgLow), stringify(rain[i]));
-    }
-
     // ALWAYS close the files
-    fileReader.close();
     output.close();
-
   }
 
 /********************************************************************************
