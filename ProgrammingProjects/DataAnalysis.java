@@ -114,8 +114,14 @@ public class DataAnalysis{
         output.printf("%d %s %s %s\n", days[i], stringify(highs[i], avgHigh), stringify(lows[i], avgLow), stringify(rain[i]));
       }
 
+      // Close current file reader in order to potentially make a new one
       fileReader.close();
 
+/**************************************************************************************
+* Prompting the user if they would like to enter another file for scraping
+* If the user asks to enter another file, another prompt asks them for the file name
+* A new file reader is made for that file and the process starts again
+*****************************************************************************************/
       System.out.print("Would you like to enter a file? (y/n)");
 
       char response = userInput.next().charAt(0);
