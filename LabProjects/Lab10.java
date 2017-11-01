@@ -84,9 +84,9 @@ public class Lab10{
 
     out.println(s1 + s2 + s3 + s4 + s5 + s6 + s7);
 
-    out.print("   " + s8 + s2 + s10 + s2 + s11);
+    out.println("   " + s8 + s2 + s10 + s2 + s11);
 
-    out.print("   " + s9 + s2 + s12);
+    out.println("   " + s9 + s2 + s12);
 
     out.println("     " + s14 + s13 + s15 + s16);
 
