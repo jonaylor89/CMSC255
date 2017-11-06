@@ -280,7 +280,7 @@ class Player{
     }
   }
 
-  // Formatting who the player gets displayed 
+  // Formatting who the player gets displayed
   @Override
   public String toString(){
 
@@ -297,5 +297,4 @@ class Player{
             "Total score: " + sumOfArray(scores) + "(" + totalParChecker() + ")";
 
   }
-
 }
