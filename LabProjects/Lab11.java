@@ -22,7 +22,7 @@ import java.util.InputMismatchException;
   try{
     month = Integer.parseInt(args[0]);
     year = Integer.parseInt(args[1]);
-  }catch(NumberFormatException e0){
+  }catch(NumberFormatException e | IndexOutOfBoundsException e0){
     while(true){
       System.out.print("\nEnter a month (1-12): ");
       Scanner userInput = new Scanner(System.in);
@@ -56,43 +56,8 @@ import java.util.InputMismatchException;
       }
 
       break;
-      }
-  }catch(IndexOutOfBoundsException e1){
-    while(true){
-      System.out.print("\nEnter a month (1-12): ");
-      Scanner userInput = new Scanner(System.in);
-      try{
-        month = userInput.nextInt();
-      }catch(InputMismatchException e2){
-        System.out.println("\nMonth must be between 1 and 12; try again");
-        continue;
-      }
-      /*****************************************************************
-      * terminate the program if the month is not between 1 and 12
-      *****************************************************************/
-      if(month < 1 || month > 12) {
-       System.out.println("\nMonth must be between 1 and 12; try again");
-       continue;
-      }
-      /*****************************************************************
-      // prompt the user to enter a year
-      *****************************************************************/
-      System.out.print("Enter a year: ");
-      try{
-        year = userInput.nextInt();
-      }catch(InputMismatchException e3){
-        System.out.println("\nMonth must be between 1 and 12; try again");
-        continue;
-      }
-
-      if(year < 0){
-        System.out.println("\nYear cannot be negative; try again");
-        continue;
-      }
-
-      break;
-      }
     }
+  }
   /*****************************************************************
   // determine the number of days in the month
   *****************************************************************/
