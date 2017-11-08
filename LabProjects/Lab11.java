@@ -22,7 +22,7 @@ import java.util.InputMismatchException;
   try{
     month = Integer.parseInt(args[0]);
     year = Integer.parseInt(args[1]);
-  }catch(NumberFormatException e | IndexOutOfBoundsException e0){
+  }catch(NumberFormatException | IndexOutOfBoundsException e0){
     while(true){
       System.out.print("\nEnter a month (1-12): ");
       Scanner userInput = new Scanner(System.in);
