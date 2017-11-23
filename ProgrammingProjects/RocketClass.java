@@ -1,6 +1,13 @@
 
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 public class RocketClass {
+
   public static void main(String[] argv){
+
+    Scanner userInput = new Scanner(System.in);
 
     printHeader();
 
@@ -21,73 +28,82 @@ public class RocketClass {
     double PriceFuel;
     String typeOfFuel;
 
-    while(true){
-      try{
-        System.out.print("Enter the height of the cylinder of the rocket(cm)  ");
-        HeightCylinder = userInput.nextInt();
+    ArrayList<Rocket> RocketList = new ArrayList<Rocket>();
 
-        System.out.print("Enter the radius of the cylinder of the rocket(cm)  ");
-        RadiusCylinder = userInput.nextInt();
+      while(true){
 
-        System.out.print("Enter the height of the cone of the rocket(cm)  ");
-        HeightCone = userInput.nextInt();
+          System.out.print("Use default? (y/n): ");
+          char de = userInput.next().charAt(0);
 
-        System.out.print("Enter the height of the fin of the rocket(cm)  ");
-        HeightFin = userInput.nextInt();
+          if(de == 'y'){
+              Rocket r = new Rocket();
+              RocketList.add(r);
+          }else{
+              try{
 
-        System.out.print("Enter the base of the fin of the rocket(cm)  ");
-        BaseFin = userInput.nextInt();
+                  System.out.print("Enter the height of the cylinder of the rocket(cm)  ");
+                  HeightCylinder = userInput.nextInt();
 
-        System.out.print("Enter the type of material  ");
-        typeOfMaterial = userInput.next();
+                  System.out.print("Enter the radius of the cylinder of the rocket(cm)  ");
+                  RadiusCylinder = userInput.nextInt();
 
-        if(typeOfMaterial.equals("aluminum")){
-          PriceOfMaterial = ALUM;
-        }else if(typeOfMaterial.equals("steel")){
-          PriceOfMaterial = STEEL;
-        }else if(typeOfMaterial.equals("titanium")){
-          PriceOfMaterial = TITAN;
-        }else{
-          System.out.println("You must enter a valid material");
-          continue;
-        }
+                  System.out.print("Enter the height of the cone of the rocket(cm)  ");
+                  HeightCone = userInput.nextInt();
 
+                  System.out.print("Enter the height of the fin of the rocket(cm)  ");
+                  HeightFin = userInput.nextInt();
 
-        System.out.print("Enter the type of fuel (ammonium ____) ");
-        typeOfFuel = userInput.next();
+                  System.out.print("Enter the base of the fin of the rocket(cm)  ");
+                  BaseFin = userInput.nextInt();
 
-        if(typeOfFuel.equals("nitrate")){
-          PriceFuel = AMMONIUMNITRATE;
-        }else if(typeOfFuel.equals("perchlorate")){
-          PriceFuel = AMMONIUMPERCHLORATE;
-        }else{
-          System.out.println("You must enter a valid fuel");
-          continue;
-        }
+                  System.out.print("Enter the type of material  ");
+                  typeOfMaterial = userInput.next();
 
-      }catch(InputMismatchException e){
-        System.out.println("Must enter valid datatypes");
-        continue;
+                  if(typeOfMaterial.equals("aluminum")){
+                      PriceOfMaterial = ALUM;
+                  }else if(typeOfMaterial.equals("steel")){
+                      PriceOfMaterial = STEEL;
+                  }else if(typeOfMaterial.equals("titanium")){
+                      PriceOfMaterial = TITAN;
+                  }else{
+                      System.out.println("You must enter a valid material");
+                      continue;
+                  }
+
+                  System.out.print("Enter the type of fuel (ammonium ____) ");
+                  typeOfFuel = userInput.next();
+
+                  if(typeOfFuel.equals("nitrate")){
+                      PriceFuel = AMMONIUMNITRATE;
+                  }else if(typeOfFuel.equals("perchlorate")){
+                      PriceFuel = AMMONIUMPERCHLORATE;
+                  }else{
+                      System.out.println("You must enter a valid fuel");
+                      continue;
+                  }
+
+                  Rocket r = new Rocket(HeightCylinder, RadiusCylinder, HeightCone, HeightFin, BaseFin, typeOfMaterial, PriceOfMaterial, PriceFuel, typeOfFuel);
+                  RocketList.add(r);
+
+              }catch(InputMismatchException e0){
+                  System.out.println("All values must be of proper datatype");
+                  continue;
+              }
+          }
+
+          System.out.print("To enter another Rocket?, hit y: ");
+          char response = userInput.next().charAt(0);
+
+          if(response != 'y'){
+              break;
+          }
+
       }
 
-    }
+      for(Rocket rocket : RocketList){
+          System.out.println(rocket);
+      }
 
-  }
-
-  public static double volumeOfCylinder(int radius, int height){
-    return Math.PI * radius * radius * height;
-  }
-
-  public static double surfAreaOfCylinder(int radius, int height){
-    return 2 * Math.PI * radius * height + 2 * Math.PI * radius * radius;
-  }
-
-  public static double surfAreaOfCone(int height, int radius){
-    return Math.PI * radius * Math.sqrt((double)(height * height + radius * radius));
-  }
-
-  public static int areaOfParallel(int base, int height){
-    return base * height;
   }
 
   private static void printHeader(){
@@ -100,22 +116,29 @@ public class RocketClass {
 
 class Rocket{
 
-  final double ALUM = 1.25;
-  final double STEEL = 3.00;
-  final double TITAN = 5.50;
+  private static final double ALUM = 1.25;
+  private static final double STEEL = 3.00;
+  private static final double TITAN = 5.50;
 
-  final double AMMONIUMNITRATE = 0.25;
-  final double AMMONIUMPERCHLORATE = 0.45;
+  private static final double AMMONIUMNITRATE = 0.25;
+  private static final double AMMONIUMPERCHLORATE = 0.45;
 
-  int HeightCylinder;
-  int RadiusCylinder;
-  int HeightCone;
-  int HeightFin;
-  int BaseFin;
-  String typeOfMaterial;
-  double PriceOfMaterial;
-  double PriceFuel;
-  String typeOfFuel;
+  private int HeightCylinder;
+  private int RadiusCylinder;
+  private int HeightCone;
+  private int HeightFin;
+  private int BaseFin;
+  private String typeOfMaterial;
+  private double PriceOfMaterial;
+  private double PriceFuel;
+  private String typeOfFuel;
+  private double CylinderSurfArea;
+  private double ConeSurfArea;
+  private double FinSurfArea;
+  private double TotalSurfArea;
+  private double CostToBuild;
+  private double AmountOfFuel;
+  private double CostOfFuel;
 
   Rocket(){
     HeightCylinder = 1;
@@ -127,6 +150,15 @@ class Rocket{
     PriceOfMaterial = STEEL;
     typeOfFuel = "nitrate";
     PriceFuel = AMMONIUMNITRATE;
+
+    CylinderSurfArea = surfAreaOfCylinder(RadiusCylinder, HeightCylinder);
+    ConeSurfArea = surfAreaOfCone(RadiusCylinder, HeightCone);
+    FinSurfArea = areaOfParallel(BaseFin, HeightFin);
+    TotalSurfArea = CylinderSurfArea + ConeSurfArea + FinSurfArea;
+    CostToBuild = TotalSurfArea * PriceOfMaterial;
+    AmountOfFuel = volumeOfCylinder(RadiusCylinder, HeightCylinder);
+    CostOfFuel = AmountOfFuel * PriceFuel;
+
   }
 
   Rocket( int HeightCylinder,
@@ -139,19 +171,80 @@ class Rocket{
           double PriceFuel,
           String typeOfFuel ){
 
-    this.HeightCylinder = HeightCylinder;
-    this.RadiusCylinder = RadiusCylinder;
-    this.HeightCone = HeightCone;
-    this.HeightFin = HeightFin;
-    this.BaseFin = BaseFin;
-    this.typeOfMaterial = typeOfMaterial;
-    this.PriceOfMaterial = PriceOfMaterial;
-    this.typeOfFuel = typeOfFuel;
-    this.PriceFuel = PriceFuel;
+    setHeightCylinder(HeightCylinder);
+    setRadiusCylinder(RadiusCylinder);
+    setHeightCone(HeightCone);
+    setHeightFin(HeightFin);
+    setBaseFin(BaseFin);
+    setTypeOfMaterial(typeOfMaterial);
+    setPriceOfMaterial(PriceOfMaterial);
+    setTypeOfFuel(typeOfFuel);
+    setPriceFuel(PriceFuel);
+
+    CylinderSurfArea = surfAreaOfCylinder(RadiusCylinder, HeightCylinder);
+    ConeSurfArea = surfAreaOfCone(RadiusCylinder, HeightCone);
+    FinSurfArea = areaOfParallel(BaseFin, HeightFin);
+    TotalSurfArea = CylinderSurfArea + ConeSurfArea + FinSurfArea;
+    CostToBuild = TotalSurfArea * PriceOfMaterial;
+    AmountOfFuel = volumeOfCylinder(RadiusCylinder, HeightCylinder);
+    CostOfFuel = AmountOfFuel * PriceFuel;
 
   }
 
-  public void toString(){
+  public void setHeightCylinder(int heightCylinder) {
+    HeightCylinder = heightCylinder;
+  }
+
+  public void setRadiusCylinder(int radiusCylinder) {
+    RadiusCylinder = radiusCylinder;
+  }
+
+  public void setHeightCone(int heightCone) {
+    HeightCone = heightCone;
+  }
+
+  public void setHeightFin(int heightFin) {
+    HeightFin = heightFin;
+  }
+
+  public void setBaseFin(int baseFin) {
+    BaseFin = baseFin;
+  }
+
+  public void setTypeOfMaterial(String typeOfMaterial) {
+    this.typeOfMaterial = typeOfMaterial;
+  }
+
+  public void setPriceOfMaterial(double priceOfMaterial) {
+    PriceOfMaterial = priceOfMaterial;
+  }
+
+  public void setPriceFuel(double priceFuel) {
+    PriceFuel = priceFuel;
+  }
+
+  public void setTypeOfFuel(String typeOfFuel) {
+    this.typeOfFuel = typeOfFuel;
+  }
+
+  public static double volumeOfCylinder(int radius, int height){
+        return Math.PI * radius * radius * height;
+    }
+
+  public static double surfAreaOfCylinder(int radius, int height){
+        return 2 * Math.PI * radius * height + 2 * Math.PI * radius * radius;
+    }
+
+  public static double surfAreaOfCone(int height, int radius){
+        return Math.PI * radius * Math.sqrt((double)(height * height + radius * radius));
+    }
+
+  public static int areaOfParallel(int base, int height){
+        return base * height;
+    }
+
+  @Override
+  public String toString(){
     return "The rocket measurements are:" +
       String.format("\t Cylinder Surface Area: %.2f(cm^2)\n", CylinderSurfArea) +
       String.format("\t Cone Surface Area: %.2f(cm^2)\n", ConeSurfArea) +
@@ -161,7 +254,6 @@ class Rocket{
       String.format("Cost of the Material using %s at $%.2f per cm^2: $%.2f\n", typeOfMaterial, PriceOfMaterial, CostToBuild) +
       String.format("The Rocket Uses: %.2f(mL)\n", AmountOfFuel) +
       String.format("The Total Cost of Fuel using %s at %.2f per mL: $%.2f\n", typeOfFuel, PriceFuel, CostOfFuel) +
-      String.format("The cost to build the rocket is %.2f\n", BUILD) +
       String.format("The grand cost of the rocket is: %.2f\n", CostToBuild + CostOfFuel);
   }
 
