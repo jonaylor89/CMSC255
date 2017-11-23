@@ -82,8 +82,13 @@ public class RocketClass {
                       continue;
                   }
 
-                  Rocket r = new Rocket(HeightCylinder, RadiusCylinder, HeightCone, HeightFin, BaseFin, typeOfMaterial, PriceOfMaterial, PriceFuel, typeOfFuel);
-                  RocketList.add(r);
+                  try{
+                    Rocket r = new Rocket(HeightCylinder, RadiusCylinder, HeightCone, HeightFin, BaseFin, typeOfMaterial, PriceOfMaterial, PriceFuel, typeOfFuel);
+                    RocketList.add(r);
+                  }catch(IllegalArgumentException e1){
+                    System.out.println("One of the arguments isn't in the correct format");
+                    continue;
+                  }
 
               }catch(InputMismatchException e0){
                   System.out.println("All values must be of proper datatype");
@@ -191,36 +196,72 @@ class Rocket{
 
   }
 
+  public int getHeightCylinder(){
+    return HeightCylinder;
+  }
+
   public void setHeightCylinder(int heightCylinder) {
     HeightCylinder = heightCylinder;
+  }
+
+  public int getRadiusCylinder(){
+    return RadiusCylinder;
   }
 
   public void setRadiusCylinder(int radiusCylinder) {
     RadiusCylinder = radiusCylinder;
   }
 
+  public int getHeightCone(){
+    return HeightCone;
+  }
+
   public void setHeightCone(int heightCone) {
     HeightCone = heightCone;
+  }
+
+  public int getHeightFin(){
+    return HeightFin;
   }
 
   public void setHeightFin(int heightFin) {
     HeightFin = heightFin;
   }
 
+  public int getBaseFine(){
+    return BaseFin;
+  }
+
   public void setBaseFin(int baseFin) {
     BaseFin = baseFin;
+  }
+
+  public String getTypeOfMaterial(){
+    return typeOfMaterial;
   }
 
   public void setTypeOfMaterial(String typeOfMaterial) {
     this.typeOfMaterial = typeOfMaterial;
   }
 
+  public double getPriceOfMaterial(){
+    return PriceOfMaterial;
+  }
+
   public void setPriceOfMaterial(double priceOfMaterial) {
     PriceOfMaterial = priceOfMaterial;
   }
 
+  public double getPriceFuel(){
+    return PriceFuel;
+  }
+
   public void setPriceFuel(double priceFuel) {
     PriceFuel = priceFuel;
+  }
+
+  public String getTypeOfFuel(){
+    return typeOfFuel;
   }
 
   public void setTypeOfFuel(String typeOfFuel) {
