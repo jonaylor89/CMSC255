@@ -102,7 +102,6 @@ public class RocketTest {
           if(response != 'y'){
               break;
           }
-
       }
 
       for(Rocket rocket : RocketList){
@@ -110,6 +109,41 @@ public class RocketTest {
           System.out.println(rocket);
           System.out.println("\n\n");
       }
+
+      Rocket testRocket = new Rocket();
+
+      System.out.println("\n\n\n");
+
+      testRocket.setHeightCylinder(100);
+      System.out.println(testRocket.getHeightCylinder());
+
+      testRocket.setRadiusCylinder(5);
+      System.out.println(testRocket.getRadiusCylinder());
+
+      testRocket.setHeightCone(56);
+      System.out.println(testRocket.getHeightCone());
+
+      testRocket.setHeightFin(42);
+      System.out.println(testRocket.getHeightFin());
+
+      testRocket.setBaseFin(90);
+      System.out.println(testRocket.getBaseFine());
+
+      testRocket.setTypeOfMaterial("aluminum");
+      System.out.println(testRocket.getTypeOfMaterial());
+
+      testRocket.setPriceOfMaterial(10);
+      System.out.println(testRocket.getPriceOfMaterial());
+
+      testRocket.setPriceOfMaterial(10);
+      System.out.println(testRocket.getPriceFuel());
+
+      testRocket.setPriceFuel(10);
+      System.out.println(testRocket.getPriceFuel());
+
+      testRocket.setTypeOfFuel("perchlorate");
+      System.out.println(testRocket.getTypeOfFuel());
+
 
   }
 
